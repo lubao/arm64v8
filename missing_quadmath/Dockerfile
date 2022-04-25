@@ -30,5 +30,5 @@ RUN cd /opt/gcc-9.4.0 && \
     ldconfig && \
     gcc -o /opt/sample /opt/sample.cpp -lquadmath && \
     /opt/sample && \
-    cd /opt && \
+    cd /root && \
     rm -rf /opt/gcc*
