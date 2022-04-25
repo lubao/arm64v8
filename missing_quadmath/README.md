@@ -6,13 +6,17 @@ This repo contains a patch to enable libquadmath on GCC 9.4.0 version ONLY.
 
 Sample Build Command
 ```
-sudo docker build -t libquadmath --cpuset-cpus=2 --memory=4g -o build.out .
+sudo docker build -t libquadmath --cpuset-cpus=2 --memory=4g .
 ```
 **NOTE**: Set up **--cpus** or **--cpuset-cpus**to limit max number of CPUs.
 
 **NOTE**: Set up **--memory** to limit memory consummation.
 
-[Docker Doc](https://docs.docker.com/config/containers/resource_constraints/)
+**NOTE**: To prevent OOM error while running docker build, please keep ration of CPU:MEM to **1core:4g**
+
+**NOTE**: Docker build may take a whole...
+
+[Docker Doc](https://docs.docker.com/engine/reference/commandline/build/)
 
 
 Sample Compile Command
