@@ -29,8 +29,10 @@ RUN make -j4 && \
     ldconfig
 
 FROM libquadmath-build as libquadmath-test
+WORKDIR /opt/
 RUN gcc -o /opt/sample /opt/sample.cpp -lquadmath && \
     /opt/sample
 
 FROM libquadmath-test as libquadmath
+WORKDIR /opt/
 RUN rm -rf /opt/gcc*
