@@ -19,7 +19,7 @@ RUN cd /opt && \
     cd gcc-9.4.0 && \
     patch -p1 -i libquadmath.patch && \
     ./configure --enable-libquadmath --disable-libada --disable-libssp --disable-libstdcxx --enable-languages=c,c++ && \
-    make -j12 2>&1 | tee /tmp/log && \
+    make -j 2>&1 | tee /tmp/log && \
     make install && \
     echo '/usr/local/lib64' > /etc/ld.so.conf.d/libquadmath.conf && \
     ldconfig
