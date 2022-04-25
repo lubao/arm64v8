@@ -9,7 +9,9 @@ Sample Build Command
 sudo docker build -t libquadmath --cpuset-cpus=2 --memory=4g -o build.out .
 ```
 **NOTE**: Set up **--cpus** or **--cpuset-cpus**to limit max number of CPUs.
+
 **NOTE**: Set up **--memory** to limit memory consummation.
+
 [Docker Doc](https://docs.docker.com/config/containers/resource_constraints/)
 
 
