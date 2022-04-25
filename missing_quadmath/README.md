@@ -6,7 +6,7 @@ This repo contains a patch to enable libquadmath on GCC 9.4.0 version ONLY.
 
 Sample Build Command
 ```
-sudo docker build -t libquadmath --cpuset-cpus 1-4 -o - .  > build.out.tar
+sudo docker build -t libquadmath --cpuset-cpus 1-4 -o build.out .
 ```
 **NOTE**: the docker will leverage all cores to build GCC
 
