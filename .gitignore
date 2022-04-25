@@ -1,3 +1,5 @@
+# Docker build out
+*.out.tar
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
