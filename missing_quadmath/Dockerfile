@@ -23,7 +23,7 @@ RUN cd /opt && \
 
 FROM libquadmath-prepare AS libquadmath-build
 WORKDIR /opt/gcc-9.4.0
-RUN make 2>&1 | tee /tmp/log && \
+RUN make && \
     make install && \
     echo '/usr/local/lib64' > /etc/ld.so.conf.d/libquadmath.conf && \
     ldconfig
