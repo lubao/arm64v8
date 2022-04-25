@@ -1,0 +1,70 @@
+diff -Nurp gcc-9.4.0/libquadmath/configure gcc/libquadmath/configure
+--- gcc-9.4.0/libquadmath/configure	2021-06-01 07:53:06.708499578 +0000
++++ gcc/libquadmath/configure	2022-04-22 01:33:22.408710743 +0000
+@@ -12563,7 +12563,16 @@ if test x$quadmath_hidden = xyes; then
+ $as_echo "#define HAVE_HIDDEN_VISIBILITY 1" >>confdefs.h
+ 
+ fi
++
++$as_echo "#if __aarch64__" >> confdefs.h
++$as_echo "    typedef long double __float128;" >> confdefs.h
++$as_echo "    #define __builtin_huge_valq() (__extension__ 0x1.0p32767Q)" >> confdefs.h
++$as_echo "#endif" >> confdefs.h
++
+ CFLAGS="$saved_CFLAGS"
++# Check for hidden visibility (copied from libssp).
++# saved_CFLAGS="$CFLAGS"
++# CFLAGS="$CFLAGS -Werror"
+ 
+ # Check for symbol versioning (copied from libssp).
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether symbol versioning is supported" >&5
+diff -Nurp gcc-9.4.0/libquadmath/quadmath.h gcc/libquadmath/quadmath.h
+--- gcc-9.4.0/libquadmath/quadmath.h	2021-06-01 07:53:06.712499629 +0000
++++ gcc/libquadmath/quadmath.h	2022-04-21 11:47:30.511716222 +0000
+@@ -27,6 +27,12 @@ Boston, MA 02110-1301, USA.  */
+ extern "C" {
+ #endif
+ 
++#if __aarch64__
++typedef long double __float128;
++#endif
++
++
++
+ /* Define the complex type corresponding to __float128
+    ("_Complex __float128" is not allowed) */
+ #if (!defined(_ARCH_PPC)) || defined(__LONG_DOUBLE_IEEE128__)
+@@ -159,9 +165,17 @@ extern int quadmath_snprintf (char *str,
+ #define FLT128_MIN_10_EXP (-4931)
+ #define FLT128_MAX_10_EXP 4932
+ 
++#if __aarch64__
++ /* The following alternative is valid, but brings the warning:
++    (floating constant exceeds range of __float128)  */
++   #define HUGE_VALQ (__extension__ 0x1.0p32767Q)
++#else
++   #define HUGE_VALQ __builtin_huge_valq()
++#endif
++
+ 
+-#define HUGE_VALQ __builtin_huge_valq()
+-/* The following alternative is valid, but brings the warning:
++/*#define HUGE_VALQ __builtin_huge_valq()
++ The following alternative is valid, but brings the warning:
+    (floating constant exceeds range of ‘__float128’)  */
+ /* #define HUGE_VALQ (__extension__ 0x1.0p32767Q) */
+ 
+diff -Nurp gcc-9.4.0/libquadmath/strtod/strtoflt128.c gcc/libquadmath/strtod/strtoflt128.c
+--- gcc-9.4.0/libquadmath/strtod/strtoflt128.c	2021-06-01 07:53:06.712499629 +0000
++++ gcc/libquadmath/strtod/strtoflt128.c	2022-04-21 11:49:19.543241999 +0000
+@@ -19,6 +19,10 @@
+ /* The actual implementation for all floating point sizes is in strtod.c.
+    These macros tell it to produce the `__float128' version, `strtold'.  */
+ 
++#if __aarch64__
++typedef long double __float128;
++#endif
++
+ #define FLOAT		__float128
+ #define FLT		FLT128
+ #ifdef USE_WIDE_CHAR
