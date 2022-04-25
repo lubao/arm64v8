@@ -22,17 +22,13 @@ RUN cd /opt && \
     ./configure --enable-libquadmath --enable-languages=c,c++
 
 FROM libquadmath-prepare AS libquadmath-build
-WORKDIR /opt/gcc-9.4.0
-RUN make -j4 && \
+WORKDIR /opt/
+RUN cd /opt/gcc-9.4.0 && \
+    make -j4 && \
     make install && \
     echo '/usr/local/lib64' > /etc/ld.so.conf.d/libquadmath.conf && \
-    ldconfig
-
-FROM libquadmath-build as libquadmath-test
-WORKDIR /opt/
-RUN gcc -o /opt/sample /opt/sample.cpp -lquadmath && \
-    /opt/sample
-
-FROM libquadmath-test as libquadmath
-WORKDIR /opt/
-RUN rm -rf /opt/gcc*
+    ldconfig && \
+    gcc -o /opt/sample /opt/sample.cpp -lquadmath && \
+    /opt/sample && \
+    cd /opt && \
+    rm -rf /opt/gcc*
