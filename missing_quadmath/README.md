@@ -8,3 +8,10 @@ Sample Build Command
 ```
 sudo docker build -t libquadmath --cpuset-cpus 1-4 -o - .  > build.out.tar
 ```
+**NOTE**: the docker will leverage all cores to build GCC
+
+Sample Compile Command
+```
+gcc -o /opt/sample /opt/sample.cpp -lquadmath
+```
+**NOTE**: Appending **-lquadmath** at end of GCC command to link libquadmath
