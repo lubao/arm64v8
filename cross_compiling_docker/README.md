@@ -37,6 +37,6 @@ The following command can check **binfmt** status:
 cat /proc/sys/fs/binfmt_misc/qemu-aarch64
 ```
 
-With ```-g yes``` parameter, the ```ccache ccache -p``` command can work.
+With ```-g yes``` parameter, the ```ccache ccache -p``` command will not throw fatal error.
 
 If your binary will check **argv[0]**, please ensure enable **preserve argv[0]** for **binfmt** to make it work as expected.
