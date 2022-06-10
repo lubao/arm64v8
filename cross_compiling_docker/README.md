@@ -4,7 +4,7 @@ As described in [multiarch/qemu-user-static](https://github.com/multiarch/qemu-u
 
 ## How preserve argv[0] register in bitfmt may impact your binary?
 
-However, we have seen an inconsistence behavior for executing a **arm64v8** binary on **x86_64** machine . For instance, running ```ccache ccahe -p``` is working properly on arm64v8 docker image on AWS Graviton2 and x86_64 docker image on AWS C5 instance. But, it drows error while running **arm64v8** docker image on **x86_64** hosts. The error message is ```ccache: error: Recursive invocation (the name of the ccache binary must be "ccache")``` for ccache 3.7.7 and 3.7.12 vesion.
+However, we have seen an inconsistence behavior for executing a **arm64v8** binary on **x86_64** machine . For instance, running ```ccache ccahe -p``` will not throw error on arm64v8 docker image on AWS Graviton2 and x86_64 docker image on AWS C5 instance. But, it throws error while running **arm64v8** docker image on **x86_64** hosts. The error message is ```ccache: error: Recursive invocation (the name of the ccache binary must be "ccache")``` for ccache 3.7.7 and 3.7.12 vesion.
 
 Following the docker file to to re-produce the error:
 ```
