@@ -14,10 +14,10 @@ CMD ["ccache", "ccache", "-p"]
 
 To dive deep into the issue, we install ccache 3.7.12 from [source code](https://ccache.dev/download.html) and add extra log to check out the __argv__ passed to the binary. Here is the result:
 
-|Arch    | argvs       |
-|------- | ------------|
-|x86_64  | ccache ccache -p|
-|arm64v8 | /usr/local/bin/ccache ccache -p|
+|Host|Docker Arch    | argvs       |
+|---|------- | ------------|
+|x86_64|ubuntu:20.04  | ccache ccache -p|
+|x86_64|arm64v8/ubuntu:20.04 | /usr/local/bin/ccache ccache -p|
 
 For arm64v8 docker image, the first argvs has been converted to full path and it will trigger the fatal error.
 
