@@ -23,6 +23,9 @@ For arm64v8 docker image, the first argvs has been converted to full path and it
 
 Check the [bitfmt-misc](https://www.kernel.org/doc/html/v4.17/admin-guide/binfmt-misc.html), it states that **bitfmt** will convert the first argv to full path and it can be turned off via specified register.
 
+> P - preserve-argv[0] Legacy behavior of binfmt_misc is to overwrite the original argv[0] with the full path to the binary. When this flag is included, binfmt_misc will add an argument to the argument vector for this purpose, thus preserving the original argv[0]. e.g. If your interp is set to /bin/foo and you run blah (which is in /usr/local/bin), then the kernel will execute /bin/foo with argv[] set to ["/bin/foo", "/usr/local/bin/blah", "blah"]. The interp has to be aware of this so it can execute /usr/local/bin/blah with argv[] set to ["blah"].
+
+
 To enable preserved argv[0] in bitfmt-mise, we check the [qemu-binfmt-conf.sh](https://github.com/qemu/qemu/blob/master/scripts/qemu-binfmt-conf.sh) and found out that ```-g yes``` parameter can tell bitfmt-misc to preserve argv[0]. So, we append the paramether to  the command described in [multiarch/qemu-user-static](https://github.com/multiarch/qemu-user-static) and re-run it. Here is the command we run:
 ```
 sudo docker run --rm --privileged multiarch/qemu-user-static --reset -p yes -g yes
