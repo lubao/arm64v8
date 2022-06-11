@@ -2,6 +2,14 @@
  
 As described in [multiarch/qemu-user-static](https://github.com/multiarch/qemu-user-static), it is possible running **arm64v8** docker image on top of **x86_64** or **amd64** host by leverage [bitfmt-misc](https://www.kernel.org/doc/html/v4.17/admin-guide/binfmt-misc.html) and [QEMU USER Static](https://github.com/multiarch/qemu-user-static).
 
+## QEMU User Static
+
+QEMU (Quick Emulator) allows us running arm64v8 binary on x86_64 machine. It translates arm64v8 machine laanguage into x86_64 machine language. QEMU user static is a static linked program running in user space.
+
+## binfmt
+
+binfmt is a kernal module to allow us register an interprter, such as Java, Python, quem, .etc, with corresponding binary file. With it module, the binary can be executed without specified the intepreter.
+
 ## How preserve argv[0] register in bitfmt may impact your binary?
 
 However, we have seen an inconsistence behavior for executing a **arm64v8** binary on **x86_64** machine . For instance, running ```ccache ccahe -p``` will not throw error on arm64v8 docker image on AWS Graviton2 and x86_64 docker image on AWS C5 instance. But, it throws error while running **arm64v8** docker image on **x86_64** hosts. The error message is ```ccache: error: Recursive invocation (the name of the ccache binary must be "ccache")``` for ccache 3.7.7 and 3.7.12 vesion.
