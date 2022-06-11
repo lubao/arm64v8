@@ -1,8 +1,8 @@
 # Running arm64v8 docker image on x86_64 machine
  
-As described in [multiarch/qemu-user-static](https://github.com/multiarch/qemu-user-static), it is possible running **arm64v8** docker image on top of **x86_64** or **amd64** host by leverage [bitfmt-misc](https://www.kernel.org/doc/html/v4.17/admin-guide/binfmt-misc.html) and [QEMU USER Static](https://github.com/multiarch/qemu-user-static).
+As described in [multiarch/qemu-user-static](https://github.com/multiarch/qemu-user-static), it is possible running **arm64v8** docker image on top of **x86_64** or **amd64** host by leverage [bitfmt-misc](https://www.kernel.org/doc/html/v4.17/admin-guide/binfmt-misc.html) and [QEMU](https://www.qemu.org/).
 
-## QEMU User Static
+## QEMU
 
 QEMU (Quick Emulator) allows us running arm64v8 binary on x86_64 machine. It translates arm64v8 machine language into x86_64 machine language. QEMU user static is a static linked program running in user space.
 
