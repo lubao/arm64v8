@@ -55,13 +55,20 @@ Total Number of args: 4
 binfmt is a kernal module to allow us register an interprter, such as Java, Python, quem, .etc, with corresponding binary file. With it module, the binary can be executed without specified the intepreter. Following is the result of running the arm64v8 binary on x86_64 machine with binfmt **enabled**.
 
 ```
-$ echo 1 > /proc/sys/fs/binfmt_misc/status # Enable binfm
 $ ./a.out 1 2 3 # No need to specified qemu-aarch64-static binary
 Total Number of args: 4
 0th argv: ./a.out
 1th argv: 1
 2th argv: 2
 3th argv: 3
+```
+
+### Enable/Disable binfmt
+
+Please run following command as root user
+```
+$ echo 1 > /proc/sys/fs/binfmt_misc/status # Enable binfm
+$ echo 0 > /proc/sys/fs/binfmt_misc/status # Disable binfm
 ```
 
 ## How preserve argv[0] register in bitfmt may impact your binary?
