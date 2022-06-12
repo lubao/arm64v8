@@ -4,7 +4,7 @@ As described in [multiarch/qemu-user-static](https://github.com/multiarch/qemu-u
 
 ## QEMU
 
-QEMU (Quick Emulator) allows us running arm64v8 binary on x86_64 machine. It translates arm64v8 machine language into x86_64 machine language. QEMU user static is a static linked program running in user space.
+QEMU allows us running arm64v8 binary on x86_64 machine. It translates arm64v8 machine language into x86_64 machine language. QEMU user static is a static linked program running in user space.
 
 Taking following code as example.
 
