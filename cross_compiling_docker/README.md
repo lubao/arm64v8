@@ -52,7 +52,7 @@ Total Number of args: 4
 
 ## binfmt
 
-binfmt is a kernal module to allow us register an interprter, such as Java, Python, quem, .etc, with corresponding binary file. With it module, the binary can be executed without specified the intepreter. Following is the result of running the arm64v8 binary on x86_64 machine with binfmt **enabled**.
+binfmt is a kernal module to allow us register an interprter, such as Java, Python, quem, .etc, with corresponding binary file. With it module, the binary can be executed without specified the intepreter. Following is the result of running the arm64v8 binary on x86_64 machine with binfmt **enabled** and well **configured**.
 
 ```
 $ ./a.out 1 2 3 # No need to specified qemu-aarch64-static binary
