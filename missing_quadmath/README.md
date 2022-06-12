@@ -1,3 +1,5 @@
+As described in [Bugs](https://gcc.gnu.org/bugzilla/show_bug.cgi?id=96016), ARM64v8 already support **long double** data type for **float128** calcuatoion. The following work around are provided if you would like to verify/testify arm64v8 machine before modifiing the code heavily.
+
 [Boosts Library](https://www.boost.org/) is using quadmath from standard C library for **float128** calculation. However, standard C won't build **libquadmath on aarch64** architecture since aarch64 support **long double** data type natively.
 
 [GCC Bug Report](https://gcc.gnu.org/bugzilla/show_bug.cgi?id=96016) contains detail information.
