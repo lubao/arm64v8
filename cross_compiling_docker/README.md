@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 Following is the result of compiling and ruuning the code on arm64v8 docker:
 
 ```
-# gcc example.c 
+# gcc --static example.c 
 # ./a.out 1 2 3
 Total Number of args: 4
 0th argv: ./a.out
