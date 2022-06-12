@@ -44,7 +44,7 @@ However, the binary can be executed via quem-static-user program. The program wi
 ```
 $ qemu-aarch64-static a.out 1 2 3
 Total Number of args: 4
-0th argv: a.out
+0th argv: ./a.out
 1th argv: 1
 2th argv: 2
 3th argv: 3
