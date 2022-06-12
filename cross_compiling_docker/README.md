@@ -67,8 +67,10 @@ Total Number of args: 4
 
 Please run following command as root user
 ```
-$ echo 1 > /proc/sys/fs/binfmt_misc/status # Enable binfmt
-$ echo 0 > /proc/sys/fs/binfmt_misc/status # Disable binfmt
+$ grep binfmt /proc/mounts                                  # mounted?
+$ mount binfmt_misc -t binfmt_misc /proc/sys/fs/binfmt_misc # mount it if not yet.
+$ echo 1 > /proc/sys/fs/binfmt_misc/status                  # Enable binfmt
+$ echo 0 > /proc/sys/fs/binfmt_misc/status                  # Disable binfmt
 ```
 
 ## How preserve argv[0] register in bitfmt may impact your binary?
