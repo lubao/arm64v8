@@ -34,13 +34,13 @@ Total Number of args: 4
 3th argv: 3
 ```
 
-If we ruuning the binary(a.out) on x86_64 machine will retrive error
+If we ruuning the binary(a.out) on x86_64 machine will receive error since x86_64 doesn't recoginize arm64v8 machine code.
 
 ```
 $ ./a.out
 -bash: ./a.out: cannot execute binary file: Exec format error
 ```
-However, the binary can be executed via quem-static-user program.
+However, the binary can be executed via quem-static-user program. The program will translate arm64v8 machine code into x86_64 machine code.
 ```
 $ qemu-aarch64-static a.out 1 2 3
 Total Number of args: 4
