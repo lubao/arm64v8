@@ -52,7 +52,12 @@ Total Number of args: 4
 
 ## binfmt
 
-binfmt is a kernal module to allow us register an interprter, such as Java, Python, quem, .etc, with corresponding binary file. With it module, the binary can be executed without specified the intepreter. Following is the result of running the arm64v8 binary on x86_64 machine with binfmt **enabled** and well **configured**.
+binfmt is a kernal module to allow us register an interprter, such as Java, Python, quem, .etc, with corresponding binary file. 
+
+> binfmt_misc (Miscellaneous Binary Format) is a capability of the Linux kernel which allows arbitrary executable file formats to be recognized and passed to certain user space applications, such as emulators and virtual machines. It is one of a number of binary format handlers in the kernel that are involved in preparing a user-space program to run. [Wiki](https://en.wikipedia.org/wiki/Binfmt_misc)
+
+
+Following is the result of running the arm64v8 binary on x86_64 machine with binfmt **enabled** and well **configured**.
 
 ```
 $ ./a.out 1 2 3 # No need to specified qemu-aarch64-static binary
