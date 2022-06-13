@@ -56,6 +56,9 @@ binfmt is a kernal module to allow us register an interprter, such as Java, Pyth
 
 > binfmt_misc (Miscellaneous Binary Format) is a capability of the Linux kernel which allows arbitrary executable file formats to be recognized and passed to certain user space applications, such as emulators and virtual machines. It is one of a number of binary format handlers in the kernel that are involved in preparing a user-space program to run. [Wiki](https://en.wikipedia.org/wiki/Binfmt_misc)
 
+> This Kernel feature allows you to invoke almost (for restrictions see below) every program by simply typing its name in the shell. This includes for example compiled Java(TM), Python or Emacs programs.
+> To achieve this you must tell binfmt_misc which interpreter has to be invoked with which binary. Binfmt_misc recognises the binary-type by matching some bytes at the beginning of the file with a magic byte sequence (masking out specified bits) you have supplied. Binfmt_misc can also recognise a filename extension aka .com or .exe. [Kernel Doc](https://www.kernel.org/doc/html/latest/admin-guide/binfmt-misc.html)
+
 
 Following is the result of running the arm64v8 binary on x86_64 machine with binfmt **enabled** and well **configured**.
 
